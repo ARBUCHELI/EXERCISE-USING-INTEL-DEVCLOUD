@@ -1,5 +1,8 @@
 # EXERCISE-USING-INTEL-DEVCLOUD
 
+## This Content was Created by Intel Edge AI for IoT Developers UDACITY Nanodegree.
+
+
 Requesting a device on Intel's DevCloud and loading a model, and running inference on an image.
 
 In this exercise, you will do the following:
@@ -162,4 +165,4 @@ In this step, we unpack the compressed file using <code>!tar zxf</code> and read
 !cat stdout.log
 !cat stderr.log</code></pre>
 
-
+# Adaptation as a Repository: Andrés R. Bücheli.
