@@ -8,7 +8,7 @@ In this exercise, you will do the following:
     . Calculate the time it takes to load the model.
     . Calculate the time it takes to run inference 10 times.
 2. Write a shell script to submit a job to Intel's DevCloud.
-3. Submit a job using <code>qsub</code> on the <strong>IEI Tank-870</strong> edge node with an <strong>Intel Xeon E3 1268L v/strong>
+3. Submit a job using <code>qsub</code> on the <strong>IEI Tank-870</strong> edge node with an <strong>Intel Xeon E3 1268L</strong>
 4. Run <code>liveQStat</code> to view the status of your submitted job.
 5. Retrieve the results from your job.
 6. View the results.
