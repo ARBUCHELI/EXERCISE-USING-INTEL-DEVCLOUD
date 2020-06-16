@@ -84,3 +84,82 @@ if __name__=='__main__':
     args=parser.parse_args() 
     main(args)</code></pre>
 
+# Step 2: Creating a Job Submission Script
+
+To submit a job to the DevCloud, you'll need to create a shell script. Similar to the Python script above, we'll use the <code>%%writefile</code> magic command to create a shell script called <code>load_model_job.sh</code>. In the next cell, you will need to complete the <code>TODO</code> items for this shell script.
+
+<code>TODO</code> items:
+
+1. Create a <code>MODELPATH</code> variable and assign it the value of the first argument that will be passed to the shell script
+2. Call the Python script using the <code>MODELPATH</code> variable value as the command line argument
+
+<pre><code>%%writefile inference_cpu_model_job.sh
+#!/bin/bash
+
+exec 1>/output/stdout.log 2>/output/stderr.log
+
+mkdir -p /output
+
+#TODO: Create MODELPATH variable
+MODELPATH = $1
+
+#TODO: Call the Python script
+python 3 load_model.py --model_path ${MODELPATH}
+
+cd /output
+
+tar zcvf output.tgz stdout.log stderr.log</code></pre>
+
+# Step 3: Submitting a Job to Intel's DevCloud
+
+In the next cell, you will write your <code>!qsub</code> command to submit your job to Intel's DevCloud to load your model on the <code>Intel Xeon E3 1268L v5</code> CPU and run inference.
+
+Your <code>!qsub</code> command should take the following flags and arguments:
+
+1. The first argument should be the shell script filename
+2. <code>-d</code> flag - This argument should be <code>.</code>
+3. <code>-l</code> flag - This argument should request a <strong>Tank-870</strong> node using an <strong>Intel Xeon E3 1268L v5</strong> CPU. The default quantity is 1, so the 1 after <code>nodes</code> is optional. To get the queue label for this CPU, you can go to this [link](https://devcloud.intel.com/edge/get_started/devcloud/)
+4. <code>-F</code> flag - This argument should be the full path to the model. As a reminder, the model is located in <code>/data/models/intel</code>.
+
+<strong>Note:</strong> There is an optional flag, <code>-N</code>, you may see in a few exercises. This is an argument that only works on Intel's DevCloud that allows you to name your job submission. This argument doesn't work in Udacity's workspace integration with Intel's DevCloud.
+
+<pre><code>job_id_core = !qsub inference_cpu_model_job.sh -d . -l nodes=1:tank-870:e3-1268l-v5 -F "/data/models/intel/vehicle-license-plate-detection-barrier-0106/FP32/vehicle-license-plate-detection-barrier-0106" -N store_core
+print(job_id_core[0])</code></pre>
+
+# Step 4: Running liveQStat
+
+Running the liveQStat function, we can see the live status of our job. Running the this function will lock the cell and poll the job status 10 times. The cell is locked until this finishes polling 10 times or you can interrupt the kernel to stop it by pressing the stop button at the top:stop button
+
+. <code>Q</code> status means our job is currently awaiting an available node
+. <code>R</code> status means our job is currently running on the requested node
+
+<strong>Note:</strong> In the demonstration, it is pointed out that <code>W</code> status means your job is done. This is no longer accurate. Once a job has finished running, it will no longer show in the list when running the <code>liveQStat</code> function.
+
+<pre><code>import liveQStat
+liveQStat.liveQStat()</code></pre>
+
+# Step 5: Retrieving Output Files
+
+In this step, we'll be using the <code>getResults</code> function to retrieve our job's results. This function takes a few arguments.
+
+1. <code>job id</code> - This value is stored in the <code>job_id_core</code> variable we created during <strong>Step 3</strong>. Remember that this value is an array with a single string, so we access the string value using <code>job_id_core[0]</code>.
+2. <code>filename</code> - This value should match the filename of the compressed file we have in our <code>load_model_job.sh</code> shell script.
+3. <code>blocking</code> - This is an optional argument and is set to <code>False</code> by default. If this is set to <code>True</code>, the cell is locked while waiting for the results to come back. There is a status indicator showing the cell is waiting on results.
+
+<strong>Note:</strong> The <code>getResults</code> function is unique to Udacity's workspace integration with Intel's DevCloud. When working on Intel's DevCloud environment, your job's results are automatically retrieved and placed in your working directory.
+
+<pre><code>import get_results
+
+get_results.getResults(job_id_core[0], filename="output.tgz", blocking=True)</code></pre>
+
+# Step 6: View the Outputs
+
+In this step, we unpack the compressed file using <code>!tar zxf</code> and read the contents of the log files by using the <cat>!cat</cat> command.
+
+<code>stdout.log</code> should contain the printout of the print statement in our Python script.
+
+<pre><code>!tar zxf output.tgz
+!cat stdout.log
+!cat stderr.log</code></pre>
+
+
