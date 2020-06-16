@@ -19,7 +19,7 @@ import sys
 sys.path.insert(0, os.path.abspath('/opt/intel_devcloud_support'))
 sys.path.insert(0, os.path.abspath('/opt/intel'))</code></pre>
 
-## The Model
+# The Model
 
 We will be using the `vehicle-license-plate-detection-barrier-0106` model for this exercise. Remember that to run a model on the CPU, we need to use `FP32` as the model precision.
 
