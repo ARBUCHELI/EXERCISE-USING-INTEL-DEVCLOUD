@@ -31,9 +31,9 @@ We will be running inference on an image of a car. The path to the image is `/da
 
 # Step 1: Creating a Python Script
 
-The first step is to create a Python script that you can use to load the model and perform inference. We'll use the '%%writefile' magic to create a Python file called 'inference_cpu_model.py'. In the next cell, you will need to complete the 'TODO' items for this Python script.
+The first step is to create a Python script that you can use to load the model and perform inference. We'll use the <code>%%writefile</code> magic to create a Python file called <code>inference_cpu_model.py</code>. In the next cell, you will need to complete the <code>TODO</code> items for this Python script.
 
-'TODO' items:
+<code>TODO</code> items:
 
 1. Load the model
 2. Prepare the model for inference (create an input dictionary)
