@@ -29,4 +29,14 @@ The model has already been downloaded for you in the `/data/models/intel` direct
 
 We will be running inference on an image of a car. The path to the image is `/data/resources/car.png`
 
+# Step 1: Creating a Python Script
 
+The first step is to create a Python script that you can use to load the model and perform inference. We'll use the '%%writefile' magic to create a Python file called 'inference_cpu_model.py'. In the next cell, you will need to complete the 'TODO' items for this Python script.
+
+'TODO' items:
+
+1. Load the model
+2. Prepare the model for inference (create an input dictionary)
+3. Run inference 10 times in a loop
+
+If you get stuck, you can click on the Show Solution button below for a walkthrough with the solution code.
