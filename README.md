@@ -1,6 +1,6 @@
 # EXERCISE-USING-INTEL-DEVCLOUD
 
-## This Content was Created by Intel Edge AI for IoT Developers UDACITY Nanodegree.
+## This Content was Created by Intel Edge AI for IoT Developers UDACITY Nanodegree. (Solution of the exercise and adaptation as a repository: Andrés R. Bücheli.)
 
 
 Requesting a device on Intel's DevCloud and loading a model, and running inference on an image.
