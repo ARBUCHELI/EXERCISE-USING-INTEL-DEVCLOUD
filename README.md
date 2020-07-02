@@ -1,6 +1,6 @@
 # EXERCISE-USING-INTEL-DEVCLOUD
 
-## This Content was Created by Intel Edge AI for IoT Developers UDACITY Nanodegree. (Solution of the exercise and adaptation as a repository: Andrés R. Bücheli.)
+## This Content was Created by Intel Edge AI for IoT Developers UDACITY Nanodegree. (Solution of the exercise and adaptation as a repository: Andrés R. Bucheli.)
 
 
 Requesting a device on Intel's DevCloud and loading a model, and running inference on an image.
@@ -165,4 +165,4 @@ In this step, we unpack the compressed file using <code>!tar zxf</code> and read
 !cat stdout.log
 !cat stderr.log</code></pre>
 
-# Solution of the exercise and adaptation as a Repository: Andrés R. Bücheli.
+# Solution of the exercise and adaptation as a Repository: Andrés R. Bucheli.
